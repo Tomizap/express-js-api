@@ -1,12 +1,12 @@
 {
   "name": "simple-crud-app",
   "version": "1.0.1",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
-    "serve": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node app.js",
+    "serve": "node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -30,8 +30,7 @@
     "stripe": "^15.7.0",
     "twilio": "^5.2.2",
     "tz-emailing": "^1.0.7",
-    "tz-mongoose-schemas": "^1.0.219",
-    "tz-toolbox": "^1.0.1",
+    "tz-mongoose-plugins": "^1.0.40",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
