@@ -5,5 +5,5 @@ TEMPLATE_BRANCH="main"
 
 git remote add template $TEMPLATE_REPO
 git fetch template
-git merge template/$TEMPLATE_BRANCH
+git merge template/$TEMPLATE_BRANCH --allow-unrelated-histories
 git push origin main
