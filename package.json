@@ -30,7 +30,7 @@
     "stripe": "^15.7.0",
     "twilio": "^5.2.2",
     "tz-emailing": "^1.0.7",
-    "tz-mongoose-plugins": "^1.0.40",
+    "tz-mongoose-plugins": "^1.1.31",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
