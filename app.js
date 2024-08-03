@@ -1,36 +1,43 @@
 const express = require("express");
 require("dotenv").config();
 require('colors');
-const setup = require('./src/services/Setup.js')
-
-// ---------------------- config ---------------------------
-
-const config = {
-
-    // -------------------- app infos --------------------------
-
-    name: '',
-
-    // -------------------- security --------------------------
-
-    cors: {},
-
-    // -------------------- plugins --------------------------
-
-    plugins: [
-        // require('./src/plugins/Base'),
-        require('./src/plugins/User'),
-        require('./src/plugins/Smtp'),
-
-        require('./src/plugins/Transactions'),
-
-        // require('./src/plugins/MongoCrud'),
-        require('./src/plugins/Mongo'),
-    ]
-
-}
-
-// ---------------------- setup app ---------------------------
+const plugins = require('./index.js')
 
 const app = express();
-setup(app, config)
+
+plugins.setup(app, {
+
+    name: "",
+
+    db: {
+        mode: 'mongo',
+        name: process.env.MONGO_DB,
+        authString: process.env.MONGO_URI
+    },
+
+    plugins: [
+
+        {
+            init: plugins.secure,
+            config: {
+                cors: {}
+            }
+        },
+        {
+            init: plugins.users,
+            config: {}
+        },
+        {
+            init: plugins.mongo,
+            config: {}
+        },
+        {
+            init: plugins.transactions,
+            config: {}
+        }
+
+    ],
+
+    routes: []
+
+})

@@ -1,6 +1,6 @@
 {
-  "name": "simple-crud-app",
-  "version": "1.0.1",
+  "name": "tz-express-plugins",
+  "version": "1.0.2",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -30,7 +30,8 @@
     "stripe": "^15.7.0",
     "twilio": "^5.2.2",
     "tz-emailing": "^1.0.7",
-    "tz-mongoose-plugins": "^1.1.52",
+    "tz-express-plugins": "^1.0.1",
+    "tz-mongoose-plugins": "^1.1.59",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
