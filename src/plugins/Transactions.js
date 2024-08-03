@@ -1,4 +1,3 @@
-const mongoose = require('mongoose')
 const Router = require('../services/Router')
 const setup = require('tz-mongoose-plugins')
 const UserPlugin = require('./User')
@@ -13,7 +12,7 @@ const routes = [
 
 // --------------------- exports ---------------------
 
-module.exports = transactions = (app) => {
+const transactions = (app) => {
 
     // --------------------- mongoose plugins ---------------------
 
@@ -28,3 +27,4 @@ module.exports = transactions = (app) => {
     Router(app, routes)
 
 }
+module.exports = transactions

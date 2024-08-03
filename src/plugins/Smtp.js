@@ -1,4 +1,4 @@
-Router = require('../services/Router')
+const Router = require('../services/Router')
 
 // --------------------- routes ---------------------
 
@@ -25,8 +25,9 @@ const routes = [
 
 // --------------------- exports ---------------------
 
-module.exports = smtp = (app) => {
+const smtp = (app) => {
 
     Router(app, routes)
 
 }
+module.exports = smtp 

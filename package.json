@@ -1,7 +1,7 @@
 {
   "name": "simple-crud-app",
   "version": "1.0.1",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
@@ -30,10 +30,13 @@
     "stripe": "^15.7.0",
     "twilio": "^5.2.2",
     "tz-emailing": "^1.0.7",
-    "tz-mongoose-plugins": "^1.1.31",
+    "tz-mongoose-plugins": "^1.1.52",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "eslint": "^9.8.0",
+    "globals": "^15.9.0",
     "nodemon": "^3.0.3"
   },
   "description": ""

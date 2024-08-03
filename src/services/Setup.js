@@ -8,10 +8,8 @@ const fs = require("fs");
 const path = require("path");
 const axios = require('axios')
 const mongoose = require('mongoose')
-const Router = require('./Router')
-const config = require('../src/config')
 
-const Setup = (app) => {
+const Setup = (app, config = {}) => {
 
     console.log();
     console.log('--- BEGIN SETUP ---');
@@ -133,8 +131,8 @@ const Setup = (app) => {
                         }
                         if (req.method.toString() !== 'get') response.config.body
                         try {
-                            res.status(code).json(response);
-                        } catch (error) { res.status(500).json(response); }
+                            res.status(err.code || 500).json(response);
+                        } catch (error) { error; res.status(500).json(response); }
                     };
 
                     next();
@@ -145,22 +143,17 @@ const Setup = (app) => {
 
                 app.use(express.static(path.join('public')));
 
-                // ---------------------- custom router ---------------------------
-
-                console.log(`-> setup custom routes`);
-                Router(app, require('../src/routes'))
-
                 // ---------------------- plugins ---------------------------
 
-                console.log(`-> setup ${config.plugins.length} app plugins`);
-                for (const plugin of config.plugins) {
+                console.log(`-> setup ${(config.plugins || []).length} app plugins`);
+                for (const plugin of (config.plugins || [])) {
                     console.log(`--> ${plugin.name}()`);
                     plugin(app)
                 }
 
                 // ---------------------- app listening ---------------------------
 
-                app.listen(process.env.SERVER_PORT, () => {
+                app.listen(process.env.SERVER_PORT, async () => {
                     if (process.env.NODE_ENV === 'dev') {
                         console.log("-> (dev) running on http://localhost:" + process.env.SERVER_PORT);
                     } else {
@@ -170,6 +163,8 @@ const Setup = (app) => {
                     console.log();
 
                     console.log('Models: ', mongoose.modelNames().length);
+                    console.log('Collection: ', await mongoose.connection.listCollections().then(r => r.length));
+                    console.log('Endpoints: ', app._router.stack.filter(m => m.route).length);
 
                     console.log();
                     console.log('--- END SETUP ---');
